@@ -106,7 +106,6 @@ char getPlayerOpinion() {
     char isContinued;
     cout << "Do you want to continue playing? (y/n): ";
     cin >> isContinued;
-
     return isContinued;
 }
 
