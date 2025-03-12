@@ -13,8 +13,9 @@ using namespace std;
         number (int) : random number in range 1-100
 ***/
 int generateRandomNumber() {
+    srand(time(0));
+    return rand() % 100 + 1;
     // TODO: Return the random number in range 1 to 100
-    return 100;
 }
 
 
@@ -25,9 +26,11 @@ int generateRandomNumber() {
         number (int) : the number that player guessed
 ***/
 int getPlayerGuess() {
+    cout << "Please enter your guess: ";
+    int Guess;
+    cin >> Guess;
+    return Guess;
     // TODO: Ask the player guest and return the player's number
-
-    return 1;
 }
 
 
@@ -46,6 +49,15 @@ string getAnswer(int number, int randomNumber) {
               If number is equal randomNumber, the answer is "Congratulation! You win."
     ***/
     string answer;
+    if (number == randomNumber) {
+        answer = "Congratulation! You win.";
+    }
+    else if (number > randomNumber) {
+        answer = "Your number is higher.";
+    }
+    else if (number < randomNumber) {
+        answer = "Your number is lower.";
+    }
 
     return answer;
 }
@@ -59,7 +71,9 @@ string getAnswer(int number, int randomNumber) {
 ***/
 bool checkSuccess(string answer) {
     // TODO: return the result after checking that player guessed right or wrong
-    
+    if (answer != "Congratulation! You win.") {
+        return false;
+    }
     return true;
 }
 
@@ -73,9 +87,13 @@ bool checkSuccess(string answer) {
 bool checkContinuePlaying(char isContinued) {
     // TODO: return result after checking player continue playing or not
     bool result = false;
+    if (isContinued == 'y' || isContinued == 'Y') {
+        result = true;
+    }
 
     return result;
 }
+
 
 
 /***
@@ -85,11 +103,13 @@ bool checkContinuePlaying(char isContinued) {
         isContinues (char) : player's choice (continue playing or not)
 ***/
 char getPlayerOpinion() {
-    // TODO: Ask the player about continue playing and return the player's choice
     char isContinued;
+    cout << "Do you want to continue playing? (y/n): ";
+    cin >> isContinued;
 
     return isContinued;
 }
+
 
 
 void playGuessIt() {
